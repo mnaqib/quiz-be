@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TriviaService } from 'src/common/trivia/trivia.service';
 import { GetQuetionsDto } from '../dto/get-quetions.dto';
 
@@ -11,7 +11,7 @@ export class AppController {
     return 'hello world';
   }
 
-  @Get('/questions')
+  @Post('/questions')
   getQuestions(@Body() options: GetQuetionsDto) {
     return this.triviaService.getQuestions(options);
   }
