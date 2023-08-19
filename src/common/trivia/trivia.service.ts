@@ -14,23 +14,22 @@ export class TriviaService {
 
   constructor() {
     this._session = new Session();
+    this._session.start();
   }
 
   async getQuestions(options: GetQuetionsDto) {
     return await getQuestions({
+      ...options,
       session: this._session,
       amount: options.amount ?? 10,
-      category: CategoryNames[options.category],
-      difficulty: QuestionDifficulties[options.difficulty],
-      type: QuestionTypes[options.type],
     });
   }
 
   getOptions() {
     return {
-      categories: Object.keys(CategoryNames),
-      difficulties: Object.keys(QuestionDifficulties),
-      types: Object.keys(QuestionTypes),
+      categories: CategoryNames,
+      difficulties: QuestionDifficulties,
+      types: QuestionTypes,
     };
   }
 }

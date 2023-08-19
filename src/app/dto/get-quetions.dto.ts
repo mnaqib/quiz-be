@@ -1,4 +1,4 @@
-import { IsEnum, IsNumber } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional } from 'class-validator';
 import {
   QuestionTypes,
   QuestionDifficulties,
@@ -9,16 +9,17 @@ export class GetQuetionsDto {
   @IsEnum(QuestionTypes, {
     message: 'type must be one of the following: multiple, boolean',
   })
-  type: string;
+  type: QuestionTypes;
 
   @IsNumber()
+  @IsOptional()
   amount: number;
 
   @IsEnum(CategoryNames)
-  category: string;
+  category: CategoryNames;
 
   @IsEnum(QuestionDifficulties, {
-    message: 'difficulty must be one of the following: Easy, Medium, Hard',
+    message: 'difficulty must be one of the following: easy, medium, hard',
   })
-  difficulty: string;
+  difficulty: QuestionDifficulties;
 }
